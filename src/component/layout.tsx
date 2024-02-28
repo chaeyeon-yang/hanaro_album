@@ -3,7 +3,7 @@ import Header from "./header";
 
 const Layout = () => {
     return (
-        <div>
+        <div className="flex flex-col">
             <Header />
             <Outlet />
         </div>
