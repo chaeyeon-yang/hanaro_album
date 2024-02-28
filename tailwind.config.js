@@ -10,6 +10,9 @@ export default {
             backgroundImage: {
                 loginImage: "url(./public/person.svg)",
             },
+            backgroundSize: {
+                sm: "2rem",
+            },
         },
     },
     plugins: [],
