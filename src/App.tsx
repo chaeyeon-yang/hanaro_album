@@ -1,10 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./component/layout";
-import LoginPage from "./page/loginPage";
+import LoginPage from "./page/LoginPage";
 
 function App() {
-    // const [count, setCount] = useState(0);
-
     return (
         <>
             <Routes>
