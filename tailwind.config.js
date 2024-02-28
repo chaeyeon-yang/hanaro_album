@@ -5,6 +5,7 @@ export default {
         extend: {
             colors: {
                 mainColor: "#2B8AC1",
+                btnColor: "#3AC11B",
             },
         },
     },
