@@ -17,6 +17,17 @@ export const LoginReducer = (
             saveStateToLocalStorage("loginState", newState);
             return newState;
         }
+        case "LOGOUT": {
+            const newState = {
+                ...state,
+                id: 0,
+                name: "",
+                username: "",
+                isLogin: false,
+            };
+            saveStateToLocalStorage("loginState", newState);
+            return newState;
+        }
         default:
             throw new Error("알수없는 액션입니다.");
     }

@@ -5,4 +5,6 @@ export type TUserInfo = {
     isLogin: boolean;
 };
 
-export type TLoginAction = { type: "LOGIN"; value: TUserInfo };
+export type TLoginAction =
+    | { type: "LOGIN"; value: TUserInfo }
+    | { type: "LOGOUT"; value: TUserInfo };
