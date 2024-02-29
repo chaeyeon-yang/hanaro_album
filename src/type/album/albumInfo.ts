@@ -5,3 +5,10 @@ export type TAlbum = {
 };
 
 export type TAlbumAction = { type: "ALBUM"; value: TAlbum };
+
+export type TAlbumPhoto = {
+    albumId: number;
+    id: number;
+    title: string;
+    thumbnailUrl: string;
+};

@@ -2,7 +2,7 @@ import { Dispatch, createContext, useReducer } from "react";
 import { TUserInfo, TLoginAction } from "../type/user/userInfo";
 import { LoginReducer } from "./loginReducer";
 import { AlbumReducer } from "./albumReducer";
-import { TAlbum, TAlbumAction } from "../type/album/albumlist";
+import { TAlbum, TAlbumAction } from "../type/album/albumInfo";
 
 const initialState: TUserInfo = {
     id: 0,

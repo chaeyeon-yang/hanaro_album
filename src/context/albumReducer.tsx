@@ -1,4 +1,4 @@
-import { TAlbumAction, TAlbum } from "../type/album/albumlist";
+import { TAlbumAction, TAlbum } from "../type/album/albumInfo";
 
 export const AlbumReducer = (state: TAlbum, action: TAlbumAction): TAlbum => {
     switch (action.type) {

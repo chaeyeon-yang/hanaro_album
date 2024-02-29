@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AlbumContext, AppContext } from "../context/mycontext";
 import axios from "axios";
-import { TAlbum } from "../type/album/albumlist";
+import { TAlbum } from "../type/album/albumInfo";
 import { useNavigate } from "react-router-dom";
 
 const AlbumPage = () => {
