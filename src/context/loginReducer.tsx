@@ -1,9 +1,13 @@
 import { Reducer } from "redux";
 import { TUserInfo, TLoginAction } from "../type/user/userInfo";
-import { saveStateToLocalStorage } from "../util/localStorage";
-
+import {
+    getStateFromLocalStorage,
+    saveStateToLocalStorage,
+} from "../util/localStorage";
+const initialLoginState = getStateFromLocalStorage("loginState");
+const initialId = initialLoginState.id;
 export const initialState: TUserInfo = {
-    id: 0,
+    id: initialId,
     name: "",
     username: "",
     isLogin: false,

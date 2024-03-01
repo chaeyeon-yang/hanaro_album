@@ -4,7 +4,9 @@ export type TAlbum = {
     title: string;
 };
 
-export type TAlbumAction = { type: "ALBUM"; value: TAlbum };
+export type TAlbumAction =
+    | { type: "SELECTED_ALBUM"; value: TAlbum }
+    | { type: "ALBUM_LIST"; value: TAlbum[] };
 
 export type TAlbumPhoto = {
     albumId: number;
