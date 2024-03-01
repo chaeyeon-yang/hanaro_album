@@ -24,11 +24,12 @@ const AlbumPage = () => {
         title: "",
     });
     useEffect(() => {
+        const controller = new AbortController();
         const url =
             "https://jsonplaceholder.typicode.com/albums?userId=" +
             context.state.id;
         axios
-            .get(url)
+            .get(url, { signal: controller.signal })
             .then((res) => {
                 albumContext.albumDispatch({
                     type: "ALBUM_LIST",
@@ -39,6 +40,9 @@ const AlbumPage = () => {
             .catch((err) => {
                 console.log(err);
             });
+        return () => {
+            controller.abort();
+        };
     }, [context.state.id]);
 
     const handleAlbumClick = (item: TAlbum) => {

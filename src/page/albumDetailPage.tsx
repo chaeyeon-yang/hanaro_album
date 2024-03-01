@@ -11,15 +11,19 @@ const AlbumDetailPage = () => {
     const albumDetailContext = useContext(AlbumDetailContext);
     const [albumphotos, setAlbumPhotos] = useState<TAlbumPhoto[]>();
     useEffect(() => {
+        const controller = new AbortController();
         const url = `https://jsonplaceholder.typicode.com/photos?albumId=${id}`;
 
         axios
-            .get(url)
+            .get(url, { signal: controller.signal })
             .then((res) => {
                 console.log(albumDetailContext);
                 setAlbumPhotos(res.data);
             })
             .catch((err) => console.log(err));
+        return () => {
+            controller.abort();
+        };
     }, []);
     return (
         <div className="flex flex-col gap-10 my-10">
