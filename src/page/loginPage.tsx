@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ValidateID } from "../util/validateID";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/mycontext";
@@ -15,6 +15,19 @@ const LoginPage = () => {
     // TODO: 디바운스
     // 사용자 입력 받을 때 디바운스 적용하여
     // 과도한 이벤트 헨들러의 호출을 방지한다.
+
+    useEffect(() => {
+        localStorage.removeItem("loginState");
+        context.dispatch({
+            type: "LOGIN",
+            value: {
+                id: 0,
+                name: "",
+                username: "",
+                isLogin: false,
+            },
+        });
+    }, []);
 
     const handleUserInput = (id: string) => {
         // 1. 사용자가 입력값을 모두 지운 경우 -> 경고 메세지 안보여주기

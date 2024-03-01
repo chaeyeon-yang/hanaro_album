@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { AppContext } from "../context/mycontext";
 import { useNavigate } from "react-router-dom";
-import { getStateFromLocalStorage } from "../util/localStorage";
 
 const Header = () => {
     const context = useContext(AppContext);
-    const userInfo = getStateFromLocalStorage("loginState");
+    const userInfo = context.state;
+
     const navigate = useNavigate();
+
+    console.log(userInfo);
     const handleLogout = () => {
         context.dispatch({
             type: "LOGOUT",
@@ -25,7 +27,7 @@ const Header = () => {
             <div className=" text-2xl font-semibold  text-white ">
                 Hanaro Album
             </div>
-            {userInfo.isLogin ? (
+            {userInfo.id !== 0 && userInfo.isLogin ? (
                 <div className="flex items-center">
                     <div className="text-lg font-bold text-slate-600 mr-2">
                         {userInfo.id}
