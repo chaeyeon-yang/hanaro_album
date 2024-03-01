@@ -1,7 +1,10 @@
 import { TAlbum } from "../type/album/albumInfo";
 import { TUserInfo } from "../type/user/userInfo";
 
-const saveStateToLocalStorage = (key: string, state: TUserInfo | TAlbum[]) => {
+const saveStateToLocalStorage = (
+    key: string,
+    state: TUserInfo | TAlbum[] | TAlbum
+) => {
     localStorage.setItem(key, JSON.stringify(state));
 };
 
