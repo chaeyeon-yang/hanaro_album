@@ -47,7 +47,7 @@ const LoginPage = () => {
                         isLogin: true,
                     },
                 });
-
+                console.log("로그인페이지에서 호출한", context.state.id);
                 navigate("/albums");
             });
         }
