@@ -1,7 +1,12 @@
 import React, { createContext, Dispatch, useReducer } from "react";
 import { Provider } from "react-redux";
 import { TUserInfo, TLoginAction } from "../type/user/userInfo";
-import { AlbumReducer, initialAlbumState } from "./albumReducer";
+import {
+    AlbumDetailReducer,
+    AlbumReducer,
+    initialAlbumState,
+    initialSelectedAlbumState,
+} from "./albumReducer";
 import { TAlbum, TAlbumAction } from "../type/album/albumInfo";
 import { Reducer } from "redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -17,14 +22,25 @@ const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         Reducer<TAlbum[], TAlbumAction>
     >(AlbumReducer, initialAlbumState);
 
+    const [albumDetailState, albumDetailDispatch] = useReducer<
+        Reducer<TAlbum, TAlbumAction>
+    >(AlbumDetailReducer, initialSelectedAlbumState);
+
     return (
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <AppContext.Provider value={{ state, dispatch }}>
                     <AlbumContext.Provider
-                        value={{ albumState, albumDispatch }}
+                        value={{
+                            albumState,
+                            albumDispatch,
+                        }}
                     >
-                        {children}
+                        <AlbumDetailContext.Provider
+                            value={{ albumDetailState, albumDetailDispatch }}
+                        >
+                            {children}
+                        </AlbumDetailContext.Provider>
                     </AlbumContext.Provider>
                 </AppContext.Provider>
             </PersistGate>
@@ -48,4 +64,12 @@ const AlbumContext = createContext<{
     albumDispatch: () => null,
 });
 
-export { AppContext, AlbumContext, AppProvider };
+const AlbumDetailContext = createContext<{
+    albumDetailState: TAlbum;
+    albumDetailDispatch: Dispatch<TAlbumAction>;
+}>({
+    albumDetailState: initialSelectedAlbumState,
+    albumDetailDispatch: () => null,
+});
+
+export { AppContext, AlbumContext, AlbumDetailContext, AppProvider };

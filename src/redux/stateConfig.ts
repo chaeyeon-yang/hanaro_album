@@ -1,5 +1,5 @@
 import { persistReducer } from "redux-persist";
-import { AlbumReducer } from "../context/albumReducer";
+import { AlbumDetailReducer, AlbumReducer } from "../context/albumReducer";
 import storage from "redux-persist/es/storage";
 import { LoginReducer } from "../context/loginReducer";
 
@@ -15,7 +15,21 @@ const albumPersistConfig = {
     whitelist: [],
 };
 
+const albumDetailPersistConfig = {
+    key: "selectedAlbumState",
+    storage,
+    whitelist: ["userId", "id", "title"],
+};
+
 const persistedLoginReducer = persistReducer(loginPersistConfig, LoginReducer);
 const persistedAlbumReducer = persistReducer(albumPersistConfig, AlbumReducer);
+const persistedAlbumDetailReducer = persistReducer(
+    albumDetailPersistConfig,
+    AlbumDetailReducer
+);
 
-export { persistedLoginReducer, persistedAlbumReducer };
+export {
+    persistedLoginReducer,
+    persistedAlbumReducer,
+    persistedAlbumDetailReducer,
+};
