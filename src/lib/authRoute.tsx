@@ -1,11 +1,9 @@
-import { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { AppContext } from "../context/mycontext";
 import { TAuthRoute } from "../type/common/common";
 
 const AuthWrapper = ({ children }: TAuthRoute) => {
-    const context = useContext(AppContext);
-    const isAuthenticated = context.state.isLogin;
+    const login = JSON.parse(localStorage.getItem("loginState") || "{}");
+    const isAuthenticated = login.isLogin === true ? true : false;
 
     if (!isAuthenticated) {
         return <Navigate to="/" />;
