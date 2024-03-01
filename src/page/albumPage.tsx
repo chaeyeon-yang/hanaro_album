@@ -15,6 +15,7 @@ const AlbumPage = () => {
     const albumContext = useContext(AlbumContext);
     const albumDetailContext = useContext(AlbumDetailContext);
     const [loading, setLoading] = useState(true);
+    const [noticeMsg, setNoticeMsg] = useState("");
 
     const albumList = getStateFromLocalStorage("albumListState");
     const [selectAlbum, setSelectAlbum] = useState<TAlbum>({
@@ -52,11 +53,15 @@ const AlbumPage = () => {
 
         setSelectAlbum({ ...item });
         console.log("사용자가 선택한", item.id);
-        // console.log(albumContext.albumState.id, "선택됨");
+        if (item.id !== -1) {
+            setNoticeMsg("");
+        }
     };
 
     const albumDetail = () => {
-        if (selectAlbum.id) {
+        if (selectAlbum.id === -1) {
+            setNoticeMsg("원하는 앨범을 선택해주세요.");
+        } else {
             navigate(`/albums/${selectAlbum.id}`);
         }
     };
@@ -72,6 +77,13 @@ const AlbumPage = () => {
                     앨범 상세보기
                 </button>
             </div>
+            {noticeMsg ? (
+                <div className="bg-errorSubColor text-errorColor px-5 py-3 rounded-lg mb-10">
+                    {noticeMsg}
+                </div>
+            ) : (
+                <></>
+            )}
             <div className="flex flex-col gap-5">
                 {loading ? (
                     <div>Loading...</div>
