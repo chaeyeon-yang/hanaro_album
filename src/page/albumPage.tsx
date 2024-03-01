@@ -1,5 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { AlbumContext, AppContext } from "../context/mycontext";
+import {
+    AlbumContext,
+    AlbumDetailContext,
+    AppContext,
+} from "../context/mycontext";
 import axios from "axios";
 import { TAlbum } from "../type/album/albumInfo";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +13,9 @@ const AlbumPage = () => {
     const navigate = useNavigate();
     const context = useContext(AppContext);
     const albumContext = useContext(AlbumContext);
+    const albumDetailContext = useContext(AlbumDetailContext);
     const [loading, setLoading] = useState(true);
+
     const albumList = getStateFromLocalStorage("albumListState");
     const [selectAlbum, setSelectAlbum] = useState<TAlbum>({
         userId: context.state.id,
@@ -17,7 +23,6 @@ const AlbumPage = () => {
         title: "",
     });
     useEffect(() => {
-        console.log("확인", context.state.id);
         const url =
             "https://jsonplaceholder.typicode.com/albums?userId=" +
             context.state.id;
@@ -29,7 +34,6 @@ const AlbumPage = () => {
                     value: res.data,
                 });
                 setLoading(false);
-                console.log(albumList);
             })
             .catch((err) => {
                 console.log(err);
@@ -37,7 +41,7 @@ const AlbumPage = () => {
     }, [context.state.id]);
 
     const handleAlbumClick = (item: TAlbum) => {
-        albumContext.albumDispatch({
+        albumDetailContext.albumDetailDispatch({
             type: "SELECTED_ALBUM",
             value: {
                 userId: context.state.id,
@@ -77,7 +81,8 @@ const AlbumPage = () => {
                             <div
                                 key={index}
                                 className={`text-lg px-4 py-2 cursor-pointer ${
-                                    selectAlbum.id === album.id
+                                    albumDetailContext.albumDetailState.id ===
+                                    album.id
                                         ? "bg-slate-300"
                                         : "bg-white"
                                 } hover:bg-slate-300 focus:bg-slate-300 rounded-lg`}
