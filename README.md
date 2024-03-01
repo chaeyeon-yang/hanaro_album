@@ -31,7 +31,9 @@
 
 ### 실행 화면
 
-https://github.com/chaeyeon-yang/hanaro_album/assets/69382168/30540cde-9de6-45bd-9592-ac158c4c4df6
+https://github.com/chaeyeon-yang/hanaro_album/assets/69382168/29122d41-2ce3-41ba-af28-195da0bd01d1
+
+
 
 
 
