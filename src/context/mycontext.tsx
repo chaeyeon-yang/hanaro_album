@@ -6,12 +6,12 @@ import {
     AlbumReducer,
     initialAlbumState,
     initialSelectedAlbumState,
-} from "./albumReducer";
+} from "../reducer/albumReducer";
 import { TAlbum, TAlbumAction } from "../type/album/albumInfo";
 import { Reducer } from "redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "../redux/store";
-import { initialState, LoginReducer } from "./loginReducer";
+import { initialState, LoginReducer } from "../reducer/loginReducer";
 
 const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [state, dispatch] = useReducer<Reducer<TUserInfo, TLoginAction>>(

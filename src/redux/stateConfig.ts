@@ -1,7 +1,7 @@
 import { persistReducer } from "redux-persist";
-import { AlbumDetailReducer, AlbumReducer } from "../context/albumReducer";
+import { AlbumDetailReducer, AlbumReducer } from "../reducer/albumReducer";
 import storage from "redux-persist/es/storage";
-import { LoginReducer } from "../context/loginReducer";
+import { LoginReducer } from "../reducer/loginReducer";
 
 const loginPersistConfig = {
     key: "loginState",
