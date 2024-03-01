@@ -1,35 +1,35 @@
-import { Dispatch, createContext, useReducer } from "react";
+import React, { createContext, Dispatch, useReducer } from "react";
+import { Provider } from "react-redux";
 import { TUserInfo, TLoginAction } from "../type/user/userInfo";
-import { LoginReducer } from "./loginReducer";
-import { AlbumReducer } from "./albumReducer";
+import { AlbumReducer, initialAlbumState } from "./albumReducer";
 import { TAlbum, TAlbumAction } from "../type/album/albumInfo";
+import { Reducer } from "redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "../redux/store";
+import { initialState, LoginReducer } from "./loginReducer";
 
-const initialState: TUserInfo = {
-    id: 0,
-    name: "",
-    username: "",
-    isLogin: false,
-};
-
-const initialAlbumState: TAlbum = {
-    userId: 0,
-    id: 0,
-    title: "",
-};
-
-const AppProvider = ({ children }: { children: React.ReactNode }) => {
-    const [state, dispatch] = useReducer(LoginReducer, initialState);
+const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [state, dispatch] = useReducer<Reducer<TUserInfo, TLoginAction>>(
+        LoginReducer,
+        initialState
+    );
     const [albumState, albumDispatch] = useReducer(
         AlbumReducer,
         initialAlbumState
     );
 
     return (
-        <AppContext.Provider value={{ state, dispatch }}>
-            <AlbumContext.Provider value={{ albumState, albumDispatch }}>
-                {children}
-            </AlbumContext.Provider>
-        </AppContext.Provider>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <AppContext.Provider value={{ state, dispatch }}>
+                    <AlbumContext.Provider
+                        value={{ albumState, albumDispatch }}
+                    >
+                        {children}
+                    </AlbumContext.Provider>
+                </AppContext.Provider>
+            </PersistGate>
+        </Provider>
     );
 };
 
