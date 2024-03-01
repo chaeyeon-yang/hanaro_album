@@ -30,7 +30,9 @@
   - 로그인하지 않은 유저가 URL 직접 접근하는 경우를 막음
 
 ### 실행 화면
-https://github.com/chaeyeon-yang/hanaro_album/assets/69382168/23638e1f-d85e-40f0-b55e-b4b8d86ae0d4
+
+https://github.com/chaeyeon-yang/hanaro_album/assets/69382168/30540cde-9de6-45bd-9592-ac158c4c4df6
+
 
 
 
