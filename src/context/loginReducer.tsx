@@ -1,8 +1,16 @@
+import { Reducer } from "redux";
 import { TUserInfo, TLoginAction } from "../type/user/userInfo";
 import { saveStateToLocalStorage } from "../util/localStorage";
 
-export const LoginReducer = (
-    state: TUserInfo,
+export const initialState: TUserInfo = {
+    id: 0,
+    name: "",
+    username: "",
+    isLogin: false,
+};
+
+const LoginReducer: Reducer<TUserInfo, TLoginAction> = (
+    state = initialState,
     action: TLoginAction
 ): TUserInfo => {
     switch (action.type) {
@@ -29,6 +37,8 @@ export const LoginReducer = (
             return newState;
         }
         default:
-            throw new Error("알수없는 액션입니다.");
+            return state;
     }
 };
+
+export { LoginReducer };

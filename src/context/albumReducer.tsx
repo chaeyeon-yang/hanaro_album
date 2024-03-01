@@ -1,6 +1,15 @@
 import { TAlbumAction, TAlbum } from "../type/album/albumInfo";
 
-export const AlbumReducer = (state: TAlbum, action: TAlbumAction): TAlbum => {
+export const initialAlbumState: TAlbum = {
+    userId: 0,
+    id: 0,
+    title: "",
+};
+
+export const AlbumReducer = (
+    state = initialAlbumState,
+    action: TAlbumAction
+): TAlbum => {
     switch (action.type) {
         case "ALBUM": {
             const newState = {
