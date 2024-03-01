@@ -1,30 +1,26 @@
-# React + TypeScript + Vite
+# Hanaro Album
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## React + Typescript + Vite
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### 구현 기능
+- 로그인
+  - 사용자 입력 값이 1~10 사이의 값인지 유효성 검사
+  - 사용자가 값을 입력하지 않은 경우 예외처리
+  - 사용자 정보 전역 상태관리
+  - 로그인 시 헤더에 사용자 정보 표시
+- 로그아웃
+  - 로그아웃 버튼 클릭 시 로그아웃 후 로그인 페이지로 이동
+  - 로그인 페이지로 이동 시 자동 로그아웃
+- 앨범 목록
+  - 로그인 유저의 모든 앨범 조회
+  - 새로 고침해도 앨범 목록 그대로 유지
+  - 사용자가 선택한 앨범의 id 전역 상태 관리
+  - 앨범을 선택하지 않은 채 상세보기를 클릭 한 경우 경고 메세지 출력
+- 상세 화면
+  - 선택한 앨범명 화면 상단 출력
+  - 앨범의 썸네일 전체 조회
+  - 새로 고침해도 화면에 표시된 정보 그대로 유지
+  - 뒤로가기 버튼 클릭 시 앨범 목록 페이지로 이동
+  
+-- 페이지 권한
+  - 로그인하지 않은 유저가 URL 직접 접근하는 경우를 막음
