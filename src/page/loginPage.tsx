@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { ValidateID } from "../util/validateID";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../context/mycontext";
+import { AlbumDetailContext, AppContext } from "../context/mycontext";
 import axios from "axios";
 
 const LoginPage = () => {
     const navigate = useNavigate();
     const context = useContext(AppContext);
+    const albumDetail = useContext(AlbumDetailContext);
 
     const [errorMsg, setErrorMsg] = useState<string>("");
     const [userId, setUserId] = useState<number>(0);
@@ -20,6 +21,14 @@ const LoginPage = () => {
                 name: "",
                 username: "",
                 isLogin: false,
+            },
+        });
+        albumDetail.albumDetailDispatch({
+            type: "SELECTED_ALBUM",
+            value: {
+                userId: 0,
+                id: 0,
+                title: "",
             },
         });
     }, []);

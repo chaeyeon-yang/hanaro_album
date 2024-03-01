@@ -4,11 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
     const context = useContext(AppContext);
-    const userInfo = context.state;
+    const login = JSON.parse(localStorage.getItem("loginState") || "{}");
 
     const navigate = useNavigate();
-
-    console.log(userInfo);
     const handleLogout = () => {
         context.dispatch({
             type: "LOGOUT",
@@ -27,14 +25,12 @@ const Header = () => {
             <div className=" text-2xl font-semibold  text-white ">
                 Hanaro Album
             </div>
-            {userInfo.id !== 0 && userInfo.isLogin ? (
+            {login.id !== 0 && login.isLogin ? (
                 <div className="flex items-center">
                     <div className="text-lg font-bold text-slate-600 mr-2">
-                        {userInfo.id}
+                        {login.id}
                     </div>
-                    <div className="text-lg font-bold mr-4">
-                        {userInfo.name}
-                    </div>
+                    <div className="text-lg font-bold mr-4">{login.name}</div>
                     <button
                         className="bg-btnColor text-white font-bold px-3.5 py-2 rounded-lg cursor-pointer"
                         onClick={handleLogout}
