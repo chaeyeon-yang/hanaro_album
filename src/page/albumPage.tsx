@@ -8,6 +8,7 @@ import axios from "axios";
 import { TAlbum } from "../type/album/albumInfo";
 import { useNavigate } from "react-router-dom";
 import { getStateFromLocalStorage } from "../util/localStorage";
+import spinner from "../../public/rollingSpinner.gif";
 
 const AlbumPage = () => {
     const navigate = useNavigate();
@@ -90,7 +91,11 @@ const AlbumPage = () => {
             )}
             <div className="flex flex-col gap-5">
                 {loading ? (
-                    <div>Loading...</div>
+                    <img
+                        src={spinner}
+                        alt="로딩"
+                        className="flex justify-center w-40 h-40"
+                    />
                 ) : (
                     albumList?.map((album: TAlbum, index: number) => {
                         return (
