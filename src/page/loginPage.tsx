@@ -14,15 +14,6 @@ const LoginPage = () => {
 
     useEffect(() => {
         localStorage.removeItem("loginState");
-        context.dispatch({
-            type: "LOGIN",
-            value: {
-                id: 0,
-                name: "",
-                username: "",
-                isLogin: false,
-            },
-        });
         albumDetail.albumDetailDispatch({
             type: "SELECTED_ALBUM",
             value: {
@@ -31,7 +22,7 @@ const LoginPage = () => {
                 title: "",
             },
         });
-    }, []);
+    }, [userId]);
 
     const handleUserInput = (id: string) => {
         if (ValidateID(id) || !id) {

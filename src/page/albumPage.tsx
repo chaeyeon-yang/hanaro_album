@@ -17,6 +17,9 @@ const AlbumPage = () => {
     const albumDetailContext = useContext(AlbumDetailContext);
     const [loading, setLoading] = useState(true);
     const [noticeMsg, setNoticeMsg] = useState("");
+    const album = JSON.parse(
+        localStorage.getItem("selectedAlbumState") || "{}"
+    );
 
     const albumList = getStateFromLocalStorage("albumListState");
     const [selectAlbum, setSelectAlbum] = useState<TAlbum>({
@@ -41,6 +44,11 @@ const AlbumPage = () => {
             .catch((err) => {
                 console.log(err);
             });
+        if (album.id) {
+            setSelectAlbum({ ...selectAlbum, id: album.id });
+            console.log(selectAlbum, "dddd?");
+        }
+
         return () => {
             controller.abort();
         };
