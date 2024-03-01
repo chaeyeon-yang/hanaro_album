@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore } from "redux-persist";
-import persistedLoginReducer from "./stateConfig";
+import { persistedLoginReducer, persistedAlbumReducer } from "./stateConfig";
 
 const store = configureStore({
-    reducer: persistedLoginReducer,
+    reducer: {
+        login: persistedLoginReducer,
+        album: persistedAlbumReducer,
+    },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {

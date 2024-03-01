@@ -13,10 +13,9 @@ const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         LoginReducer,
         initialState
     );
-    const [albumState, albumDispatch] = useReducer(
-        AlbumReducer,
-        initialAlbumState
-    );
+    const [albumState, albumDispatch] = useReducer<
+        Reducer<TAlbum[], TAlbumAction>
+    >(AlbumReducer, initialAlbumState);
 
     return (
         <Provider store={store}>
@@ -42,7 +41,7 @@ const AppContext = createContext<{
 });
 
 const AlbumContext = createContext<{
-    albumState: TAlbum;
+    albumState: TAlbum[];
     albumDispatch: Dispatch<TAlbumAction>;
 }>({
     albumState: initialAlbumState,
